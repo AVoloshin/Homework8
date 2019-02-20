@@ -12,12 +12,18 @@ public class Calc {
             Scanner num = new Scanner(System.in);
             System.out.println("Введите 1-е число");
             try {a = num.nextInt();
-            }catch (InputMismatchException e){System.out.println("Вы ввели символ, введите число"); }
-            finally { System.out.println(num.nextLine()); a = num.nextInt();}
+            }catch (InputMismatchException e){
+                System.out.println("Вы ввели символ, введите число");
+                System.out.println(num.nextLine());
+                a = num.nextInt();
+            }
             System.out.println("Введите 2-е число");
             try {b = num.nextInt();
-            }catch (InputMismatchException e){System.out.println("Вы ввели символ, введите число"); }
-            finally { System.out.println(num.nextLine()); b = num.nextInt();}
+            }catch (InputMismatchException e){
+                System.out.println("Вы ввели символ, введите число");
+                System.out.println(num.nextLine());
+                b = num.nextInt();
+            }
             System.out.println("Выберите арифметическое действие:");
             this.action();
             System.out.println("Введите любой символ, чтобы продолжить, 'e' чтобы выйти");
