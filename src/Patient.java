@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -40,6 +41,7 @@ public class Patient {
             e.printStackTrace();
         }
         dataF = birthday.format(fullDate); //записываем поле Date в строку для работы с методами java.time
+        this.writeFile(dataF);
     }
 
 
@@ -69,7 +71,7 @@ public class Patient {
         System.out.println("Средний возраст пациентов равен "+ ages/patients.length +" лет"+ months/patients.length +" мес");
     }
     public boolean isExists (){
-        return (new File("patients.txt").exists());
+        return (new File("src/patients.txt").exists());
     }
     public void readFile (){
         if (this.isExists()){
@@ -84,5 +86,15 @@ public class Patient {
                 System.out.println(ex.getMessage());
             }
         }else this.printIn();
+    }
+    public void writeFile (String string){
+
+
+        try (FileWriter writeFile = new FileWriter("work.txt", true)){
+            writeFile.write(string);
+            writeFile.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
