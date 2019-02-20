@@ -8,19 +8,21 @@ public class Calc {
 
     public void printCalc () {
         char c;
-         do {
-             Scanner num = new Scanner(System.in);
-             System.out.println("Введите 1-е число");
-             try {a = num.nextInt();
-             }catch (InputMismatchException e){System.out.println("Вы ввели символ, введите число"); }
-             finally { System.out.println(num.nextLine()); a = num.nextInt();}
-             System.out.println("Введите 2-е число");
-             b = num.nextInt();
-             System.out.println("Выберите арифметическое действие:");
-             this.action();
-             System.out.println("Введите любой символ, чтобы продолжить, 'e' чтобы выйти");
-             c=num.next().charAt(0);
-         } while (c!='e');
+        do {
+            Scanner num = new Scanner(System.in);
+            System.out.println("Введите 1-е число");
+            try {a = num.nextInt();
+            }catch (InputMismatchException e){System.out.println("Вы ввели символ, введите число"); }
+            finally { System.out.println(num.nextLine()); a = num.nextInt();}
+            System.out.println("Введите 2-е число");
+            try {b = num.nextInt();
+            }catch (InputMismatchException e){System.out.println("Вы ввели символ, введите число"); }
+            finally { System.out.println(num.nextLine()); b = num.nextInt();}
+            System.out.println("Выберите арифметическое действие:");
+            this.action();
+            System.out.println("Введите любой символ, чтобы продолжить, 'e' чтобы выйти");
+            c=num.next().charAt(0);
+        } while (c!='e');
     }
 
     public double sum (double a, double b){
@@ -33,7 +35,10 @@ public class Calc {
         return a*b;
     }
     public double div (double a, double b){
-        return a/b;
+        try {return a/b;}catch (Exception e){System.out.println("На ноль делить нельзя!");}
+        finally {
+            return a/b;
+        }
     }
 
     private void action (){
