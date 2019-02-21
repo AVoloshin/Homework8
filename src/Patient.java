@@ -19,12 +19,8 @@ public class Patient {
     protected LocalDate today;
     protected LocalDate birthday;
     protected Period age;
-    Patient [] patients;
 
-    //устанавливаем размер массива пациентов
-    public void setPatients (int num){
-        patients = new Patient [num];
-    }
+
     //получаем данные из консоли ввода
     public void printIn() {
         Scanner fio = new Scanner(System.in);
@@ -41,7 +37,7 @@ public class Patient {
             e.printStackTrace();
         }
         dataF = birthday.format(fullDate); //записываем поле Date в строку для работы с методами java.time
-        this.writeFile(dataF);
+        this.writeFile("Пациент: "+name+" дата рождения "+dataF);
     }
 
 
@@ -53,15 +49,9 @@ public class Patient {
         System.out.println("Возраст "+age.getYears()+" лет"+age.getMonths()+" мес");//получаем года и месяцы
     }
     //заполняем массив пациентами-объектами
-    public void getPatients (){
-        for (int i =0; i<3; i++){
-            Patient newPatient = new Patient();
-            newPatient.printIn();
-            patients [i] = newPatient;
-        }
-    }
+
     //проходим по массиву объектов, получаем int годов месяцев и тд, выводим среднее значение
-    public void getMidAge (){
+    public void getMidAge (Patient [] patients){
         int ages = 0; int months = 0;
         for (Patient patient: patients){
             patient.getAge();
@@ -71,11 +61,11 @@ public class Patient {
         System.out.println("Средний возраст пациентов равен "+ ages/patients.length +" лет"+ months/patients.length +" мес");
     }
     public boolean isExists (){
-        return (new File("src/patients.txt").exists());
+        return (new File("patients.txt").exists());
     }
     public void readFile (){
         if (this.isExists()){
-            try (FileReader fileRead = new FileReader("patient.txt")){
+            try (FileReader fileRead = new FileReader("patients.txt")){
                 int c;
                 while((c=fileRead.read())!=-1){
 
@@ -88,9 +78,7 @@ public class Patient {
         }else this.printIn();
     }
     public void writeFile (String string){
-
-
-        try (FileWriter writeFile = new FileWriter("work.txt", true)){
+        try (FileWriter writeFile = new FileWriter("patients.txt", true)){
             writeFile.write(string);
             writeFile.flush();
         } catch (IOException e) {
