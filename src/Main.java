@@ -1,7 +1,7 @@
 public class Main {
 
     public static void main(String[] args) {
-        Calc calc = new Calc();
-        calc.printCalc();
+        Patient patient = new Patient();
+        patient.readFile(3);
     }
 }
