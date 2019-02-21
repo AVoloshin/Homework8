@@ -63,7 +63,7 @@ public class Patient {
     public boolean isExists (){
         return (new File("patients.txt").exists());
     }
-    public void readFile (){
+    public void readFile (int i){
         if (this.isExists()){
             try (FileReader fileRead = new FileReader("patients.txt")){
                 int c;
@@ -75,7 +75,7 @@ public class Patient {
             }catch(IOException ex){
                 System.out.println(ex.getMessage());
             }
-        }else this.printIn();
+        }else this.readPatients(i);
     }
     public void writeFile (String string){
         try (FileWriter writeFile = new FileWriter("patients.txt", true)){
@@ -84,5 +84,10 @@ public class Patient {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public void readPatients (int i){
+        Patients patients = new Patients();
+        patients.setPatients(i);
+        patients.getPatients();
     }
 }
