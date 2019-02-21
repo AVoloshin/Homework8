@@ -5,8 +5,8 @@ public class Patients {
     public void setPatients (int num){
         patients = new Patient [num];
     }
-    
-    public void getPatients (Patient patients []){
+
+    public void getPatients (){
         for (int i =0; i<patients.length; i++){
             Patient newPatient = new Patient();
             newPatient.printIn();
