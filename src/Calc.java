@@ -41,10 +41,10 @@ public class Calc {
         return a*b;
     }
     public double div (double a, double b){
-        try {return a/b;}catch (Exception e){System.out.println("На ноль делить нельзя!");}
-        finally {
-            return a/b;
-        }
+        try {
+        if (b==0){ throw new MyExcept();
+        } else return a/b;
+    }catch
     }
 
     private void action (){
