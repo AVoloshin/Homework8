@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -19,6 +20,7 @@ public class Patient {
     protected LocalDate today;
     protected LocalDate birthday;
     protected Period age;
+    String [] patients;
 
 
     //получаем данные из консоли ввода
@@ -37,7 +39,7 @@ public class Patient {
             e.printStackTrace();
         }
         dataF = birthday.format(fullDate); //записываем поле Date в строку для работы с методами java.time
-        this.writeFile("Пациент: "+name+" дата рождения "+dataF);
+        this.writeFile("Пациент: "+name+" дата рождения "+dataF+" | ");
     }
 
 
@@ -65,12 +67,18 @@ public class Patient {
     }
     public void readFile (int i){
         if (this.isExists()){
+            String temp="";
             try (FileReader fileRead = new FileReader("patients.txt")){
                 int c;
                 while((c=fileRead.read())!=-1){
-
+                    temp += c; //stringbuilder?
                     System.out.print((char)c);
                 }
+                System.out.println(temp);
+                String delimeter = "|";
+                patients = temp.split(delimeter);
+
+
                 System.out.print("\n");
             }catch(IOException ex){
                 System.out.println(ex.getMessage());
@@ -86,8 +94,7 @@ public class Patient {
         }
     }
     public void readPatients (int i){
-        Patients patients = new Patients();
-        patients.setPatients(i);
+        Patients patients = new Patients(i);
         patients.getPatients();
     }
 }
